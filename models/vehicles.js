@@ -10,10 +10,10 @@ const VehiclesSchema = new Schema({
  chasis: String,
  engine: String,
  placa: String,
- vehicleType: String,
- brand: String,
- model: String,
- fuel: String,
+ vehicleType: {type: ObjectId, ref: 'VehicleType'},
+ brand: {type: ObjectId, ref: 'VehicleBrand'},
+ model: {type: ObjectId, ref: 'VehicleModel'},
+ fuel: {type: ObjectId, ref: 'FuelType'},
  date:  { type: Date, default: Date.now },
  updated:  { type: Date, default: Date.now }
 });

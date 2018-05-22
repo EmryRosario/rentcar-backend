@@ -5,12 +5,23 @@ const mongoose = require('mongoose');
 const app = express()
 
 const Vehicle = require('./models/vehicles')
+const VehicleType = require('./models/vehicle-types')
+const vehicleBrand = require('./models/vehicle-brands')
+const Transaction = require('./models/transactions')
+const Inspection = require('./models/inspections')
+const fuelType = require('./models/fuel-types')
+const Employee = require('./models/employees')
+const Customer = require('./models/customers')
+
+const vehicleModelRouter = require('./routers/vehicle-model')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cookieParser())
 
-mongoose.connect('mongodb://localhost/rentcar');
+let dbConnection = process.env.DB_CONNECTION
+
+mongoose.connect(dbConnection);
 
 let db = mongoose.connection;
 
@@ -20,6 +31,8 @@ db.once('open', function() {
   console.log('We\'re connected...')
 
 })
+
+app.use('/', vehicleModelRouter)
 
 app.get('*', (req, res) => {
   // let h = new Vehicle({
@@ -37,11 +50,12 @@ app.get('*', (req, res) => {
   //    if ( err ) res.json(err)
   //    res.json(model)
   //  })
-  Vehicle.find({}, function (err, docs) {
-    if (err) return res.send(err)
 
-    res.json(docs)
-  })
+  // Vehicle.find({}, function (err, docs) {
+  //   if (err) return res.send(err)
+
+  //   res.json(docs)
+  // })
 })
 
 app.listen(3000, () => console.log('The server is listen on port 3000...'))

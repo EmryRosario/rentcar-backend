@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "DB_CONNECTION=mongodb://localhost/rentcar node index.js"
   },
   "author": "Emry Rosario Humphreys",
   "license": "ISC",
