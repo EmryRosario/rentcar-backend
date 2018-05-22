@@ -1,0 +1,19 @@
+{
+  "name": "rentcar-b",
+  "version": "1.0.0",
+  "description": "'This is rent a car backend project'",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Emry Rosario Humphreys",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "micro": "^9.3.1",
+    "mongoose": "^5.1.1"
+  }
+}
