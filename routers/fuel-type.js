@@ -32,7 +32,7 @@ router.post('/fuel-type', (req, res) => {
 
 router.get('/fuel-type', (req, res) => {
     mongoose.connect(dbConnection)
-    let fuelType = req.body.fuelType || {}
+    let fuelType = req.query.fuelType || {}
     
     FuelType.find(fuelType)
     .populate('employee')

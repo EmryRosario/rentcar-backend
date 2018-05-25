@@ -33,7 +33,7 @@ router.post('/vehicle-type', (req, res) => {
 
 router.get('/vehicle-type', (req, res) => {
     mongoose.connect(dbConnection)
-    let type = req.body.vehicleType || {}
+    let type = req.query.vehicleType || {}
     
     VehicleType.find(type)
     .populate('employee')

@@ -32,7 +32,7 @@ router.post('/employee', (req, res) => {
 
 router.get('/employee', (req, res) => {
     mongoose.connect(dbConnection)
-    let employee = req.body.employee || {}
+    let employee = req.query.employee || {}
     Employee.find(employee)
     .exec((err, employees) => {
         mongoose.disconnect();
