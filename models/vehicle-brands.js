@@ -8,7 +8,7 @@ const VehicleBrandsSchema = new Schema({
  id: ObjectId,
  description: String,
  employee: {type: ObjectId, ref: 'Employee'},
- state: String,  
+ state: {type: String, default: 'Activo'},  
  date:  { type: Date, default: Date.now },
  updated:  { type: Date, default: Date.now }
 })

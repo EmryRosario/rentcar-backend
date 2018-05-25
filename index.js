@@ -14,6 +14,9 @@ const Employee = require('./models/employees')
 const Customer = require('./models/customers')
 
 const vehicleModelRouter = require('./routers/vehicle-model')
+const employeeRouter = require('./routers/employee')
+const vehicleTypeRouter = require('./routers/vehicle-type')
+const vehicleBrandRouter = require('./routers/vehicle-brand')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -33,29 +36,32 @@ db.once('open', function() {
 })
 
 app.use('/', vehicleModelRouter)
+app.use('/', employeeRouter)
+app.use('/', vehicleTypeRouter)
+app.use('/', vehicleBrandRouter)
 
-app.get('*', (req, res) => {
-  // let h = new Vehicle({
-  //   description: 'asdsadsd',
-  //   chasis: '23943560dk',
-  //   engine: '695043433490',
-  //   placa: 'dkfmdsfksd2',
-  //   vehicleType: '695065trgof',
-  //   brand: 'kdlgdsfsd',
-  //   model: 'hfgmfgf',
-  //   fuel: 'dskdmgkfgmfk'
-  //  })
+// app.get('*', (req, res) => {
+//   // let h = new Vehicle({
+//   //   description: 'asdsadsd',
+//   //   chasis: '23943560dk',
+//   //   engine: '695043433490',
+//   //   placa: 'dkfmdsfksd2',
+//   //   vehicleType: '695065trgof',
+//   //   brand: 'kdlgdsfsd',
+//   //   model: 'hfgmfgf',
+//   //   fuel: 'dskdmgkfgmfk'
+//   //  })
 
-  //  h.save((err, model) => {
-  //    if ( err ) res.json(err)
-  //    res.json(model)
-  //  })
+//   //  h.save((err, model) => {
+//   //    if ( err ) res.json(err)
+//   //    res.json(model)
+//   //  })
 
-  // Vehicle.find({}, function (err, docs) {
-  //   if (err) return res.send(err)
+//   // Vehicle.find({}, function (err, docs) {
+//   //   if (err) return res.send(err)
 
-  //   res.json(docs)
-  // })
-})
+//   //   res.json(docs)
+//   // })
+// })
 
 app.listen(3000, () => console.log('The server is listen on port 3000...'))

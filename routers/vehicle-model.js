@@ -35,8 +35,8 @@ router.post('/vehicle-model', (req, res) => {
 
 router.get('/vehicle-model', (req, res) => {
     mongoose.connect(dbConnection)
-    
-    VehicleModel.find()
+    let vehicleModel = req.body.vehicleModel || {}
+    VehicleModel.find(vehicleModel)
     .populate('employee')
     .exec((err, models) => {
         mongoose.disconnect();
@@ -74,15 +74,24 @@ router.put ('/vehicle-model/:id', (req, res) => {
     })
 })
 
-router.delete('/vehicle-model/:id', (req, res) => {
+router.delete('/vehicle-model', (req, res) => {
     mongoose.connect(dbConnection)    
 
-    let condition = {}
-    let toDelete = req.body.delete;
+    let toDelete = req.body.delete
+    let models = []
 
-    if (req.params.id) condition._id = req.params.id
+    VehicleModel.find(toDelete)
+    .exec()
+    .then(modelsToDelete => {
+        models = modelsToDelete
+        VehicleModel.find(toDelete)
+        .remove()
+        .exec(() => {
+            mongoose.disconnect()
+            res.json(models)   
+        })
+    })
 
-    vehicleModel.find(condition)
     //TODO
 })
 module.exports = router

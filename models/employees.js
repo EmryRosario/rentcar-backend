@@ -10,8 +10,10 @@ const EmployeesSchema = new Schema({
  cedula: String,
  workSession: String,
  commissionPercentage: Schema.Types.Decimal128,
+ user: String,
+ password: String,
  entry: {type: Date, default: Date.now},
- state: String,
+ state: {type: String, default: "Activo"},
  date:  { type: Date, default: Date.now },
  updated:  { type: Date, default: Date.now }
 })
