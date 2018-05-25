@@ -14,6 +14,7 @@ const VehiclesSchema = new Schema({
  brand: {type: ObjectId, ref: 'VehicleBrand'},
  model: {type: ObjectId, ref: 'VehicleModel'},
  fuel: {type: ObjectId, ref: 'FuelType'},
+ employee: {type: ObjectId, ref: 'Employee'},
  date:  { type: Date, default: Date.now },
  updated:  { type: Date, default: Date.now }
 });

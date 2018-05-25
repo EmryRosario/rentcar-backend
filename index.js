@@ -17,6 +17,7 @@ const vehicleModelRouter = require('./routers/vehicle-model')
 const employeeRouter = require('./routers/employee')
 const vehicleTypeRouter = require('./routers/vehicle-type')
 const vehicleBrandRouter = require('./routers/vehicle-brand')
+const fuelTypeRouter = require('./routers/fuel-type')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -39,6 +40,7 @@ app.use('/', vehicleModelRouter)
 app.use('/', employeeRouter)
 app.use('/', vehicleTypeRouter)
 app.use('/', vehicleBrandRouter)
+app.use('/', fuelTypeRouter)
 
 // app.get('*', (req, res) => {
 //   // let h = new Vehicle({
