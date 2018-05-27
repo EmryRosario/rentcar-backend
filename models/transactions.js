@@ -9,10 +9,10 @@ const TransactionsSchema = new Schema({
  description: String,
  customer: {type: ObjectId, ref: 'Customer'},
  employee: {type: ObjectId, ref: 'Employee'},
- inspection: {type: ObjectId, ref: 'Inspection'},
- rent: {type: ObjectId, ref: 'Rent'},
+ rent: {type: ObjectId, ref: 'Rent', unique:true},
+ total: {type: Schema.Types.Decimal128, required: true},
  type: String,
- state: String,
+ state: {type: String, default: 'Activo'},
  date:  { type: Date, default: Date.now },
 })
 
