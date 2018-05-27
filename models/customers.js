@@ -12,17 +12,7 @@ const CustomersSchema = new Schema({
  creditLimit: Schema.Types.Decimal128,
  peopleType: String,
  state: String,
- rents: [{
-    id: ObjectId,
-    employee: {type: ObjectId, ref: 'Employee'},
-    vehicle: {type: ObjectId, ref: 'Vehicle'},
-    rentDate: {type: Date, default: Date.now},
-    returnDate: {type: Date},
-    amountPerDay: Schema.Types.Decimal128,
-    days: Number,
-    comment: String,
-    state: String
- }],
+ rents: [{type: ObjectId, ref: 'Rent'}],
  date:  { type: Date, default: Date.now },
  updated:  { type: Date, default: Date.now }
 })

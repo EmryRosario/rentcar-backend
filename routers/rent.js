@@ -1,27 +1,27 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose');
-const Vehicle = require('../models/vehicles')
+const Rent = require('../models/rent')
 
 let dbConnection = process.env.DB_CONNECTION
 
 
-router.post('/vehicle', (req, res) => {
-    if (!req.body.vehicle) {
+router.post('/rent', (req, res) => {
+    if (!req.body.rent) {
         res.status(400)
-        console.log('POST /vehicle error: "Not vehicle found."')
-        return res.json({error: 400, msg: 'Not vehicle found.'})
+        console.log('POST /rent error: "Not rent found."')
+        return res.json({error: 400, msg: 'Not rent found.'})
     }
       
     mongoose.connect(dbConnection)
-    let newVehicle = req.body.vehicle
+    let newRent = req.body.rent
     
-    let vehicle = new Vehicle(newVehicle)
-    
-    vehicle.save()
-    .then(v => {
+    let rent = new Rent(newRent)
+    //TODO
+    rent.save()
+    .then(r => {
         mongoose.disconnect()
-        res.json(v)
+        res.json(r)
     })
     .catch(err => {
         res.status(500)
@@ -30,28 +30,25 @@ router.post('/vehicle', (req, res) => {
     })        
 })
 
-router.get('/vehicle', (req, res) => {
+router.get('/rent', (req, res) => {
     mongoose.connect(dbConnection)
-    let vehicle = req.query.vehicle || {}
+    let rent = req.query.rent || {}
     
-    Vehicle.find(vehicle)
-    .populate('vehicleType')
-    .populate('brand')
-    .populate('model')
-    .populate('fuel')
+    Rent.find(rent)
+    .populate('vehicle')
     .populate('employee')
-    .exec((err, vehicles) => {
+    .exec((err, rents) => {
         mongoose.disconnect();
        if (err) {
            res.status(500)
            return res.send()
        }
 
-       return res.json(vehicles)
+       return res.json(rents)
     })
 })
 
-router.put ('/vehicle/:id/', (req, res) => {
+router.put ('/rent/:id/', (req, res) => {
     mongoose.connect(dbConnection)
     let condition = {}
     let update = req.body.update
@@ -63,11 +60,11 @@ router.put ('/vehicle/:id/', (req, res) => {
 
     if (req.params.id) condition._id = req.params.id
 
-    Vehicle.findOneAndUpdate(condition, update)
+    Rent.findOneAndUpdate(condition, update)
     .exec()
-    .then(vehicle => {
+    .then(rent => {
         mongoose.disconnect()
-        res.json(vehicle)
+        res.json(rent)
     })
     .catch(err => {
         mongoose.disconnect()
@@ -76,21 +73,21 @@ router.put ('/vehicle/:id/', (req, res) => {
     })
 })
 
-router.delete('/vehicle/', (req, res) => {
+router.delete('/rent/', (req, res) => {
     mongoose.connect(dbConnection)    
 
     let toDelete = req.body.delete || {}
-    let vehicle = []
+    let rent = []
     
-    Vehicle.find(toDelete)
+    Rent.find(toDelete)
     .exec()
-    .then( vehicleToDelete => {
-        vehicle = vehicleToDelete
-        Vehicle.find(toDelete)
+    .then( rentToDelete => {
+        rent = rentToDelete
+        Rent.find(toDelete)
         .remove()
         .exec(() => {
             mongoose.disconnect()
-            res.json(vehicle)   
+            res.json(rent)   
         })
     })
     .catch(e => {
@@ -98,5 +95,6 @@ router.delete('/vehicle/', (req, res) => {
         res.status(500)
         res.json({error: e.msg})
     })
+
 })
 module.exports = router
