@@ -17,7 +17,7 @@ const InspectionsSchema = new Schema({
  glassBreaks: Boolean,
  tiresState: [Boolean],
 
- state: String,
+ state: {type: String, default: 'Activo'},
  date:  { type: Date, default: Date.now },
 })
 
