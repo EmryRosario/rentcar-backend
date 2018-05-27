@@ -9,6 +9,7 @@ const InspectionsSchema = new Schema({
  vehicle: {type: ObjectId, ref: 'Vehicle'},
  customer: {type: ObjectId, ref: 'Customer'},
  employee: {type:ObjectId, ref: 'Employee'},
+ rent: {type: ObjectId, ref: 'Rent'},
  scratches: Boolean,
  fuel: Schema.Types.Decimal128,
  gomaRepuesto: Boolean,

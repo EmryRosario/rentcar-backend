@@ -10,7 +10,7 @@ const TransactionsSchema = new Schema({
  customer: {type: ObjectId, ref: 'Customer'},
  employee: {type: ObjectId, ref: 'Employee'},
  inspection: {type: ObjectId, ref: 'Inspection'},
- rent: ObjectId,
+ rent: {type: ObjectId, ref: 'Rent'},
  type: String,
  state: String,
  date:  { type: Date, default: Date.now },

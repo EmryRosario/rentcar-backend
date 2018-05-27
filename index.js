@@ -20,6 +20,7 @@ const vehicleBrandRouter = require('./routers/vehicle-brand')
 const fuelTypeRouter = require('./routers/fuel-type')
 const vehicleRouter = require('./routers/vehicle')
 const rentRouter = require('./routers/rent')
+const customerRouter = require('./routers/customer')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -45,29 +46,6 @@ app.use('/', vehicleBrandRouter)
 app.use('/', fuelTypeRouter)
 app.use('/', vehicleRouter)
 app.use('/', rentRouter)
-
-// app.get('*', (req, res) => {
-//   // let h = new Vehicle({
-//   //   description: 'asdsadsd',
-//   //   chasis: '23943560dk',
-//   //   engine: '695043433490',
-//   //   placa: 'dkfmdsfksd2',
-//   //   vehicleType: '695065trgof',
-//   //   brand: 'kdlgdsfsd',
-//   //   model: 'hfgmfgf',
-//   //   fuel: 'dskdmgkfgmfk'
-//   //  })
-
-//   //  h.save((err, model) => {
-//   //    if ( err ) res.json(err)
-//   //    res.json(model)
-//   //  })
-
-//   // Vehicle.find({}, function (err, docs) {
-//   //   if (err) return res.send(err)
-
-//   //   res.json(docs)
-//   // })
-// })
+app.use('/', customerRouter)
 
 app.listen(3000, () => console.log('The server is listen on port 3000...'))
