@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
 const app = express()
+const cors = require('cors')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
@@ -37,8 +38,9 @@ app.use(expressSession({
   saveUninitialized: true
 }))
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(cors())
 
 let dbConnection = process.env.DB_CONNECTION
 
